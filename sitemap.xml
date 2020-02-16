@@ -1,6 +1,6 @@
 ---
 layout: compress
-permalink: /pixel/sitemap.xml
+permalink: /sitemap.xml
 sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8"?>
