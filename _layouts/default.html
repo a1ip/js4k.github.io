@@ -15,7 +15,7 @@ layout: compress
     | prepend: site.baseurl  }}">
     {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
     {% for post in posts %}
-    <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />
+    <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url | prepend: site.baseurl}}" />
     {% endfor %}
     {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
     {% for page in pages %}
@@ -23,7 +23,7 @@ layout: compress
     {% endfor %}
     <link rel="alternate" type="application/rss+xml" 
     title="{{ site.title[page.lang] }}" href="{{ site.feed[page.lang] 
-    | prepend: site.baseurl | prepend: site.url }}">
+     | prepend: site.url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' 
     | append: site.github.build_revision | relative_url }}">
     <script 
@@ -58,7 +58,7 @@ layout: compress
         <nav>
           <ul>
         {% for item in site.nav[page.lang] %}
-          <li><a href="{{ item[1].url }}" class="button {{ page.lang }}"
+          <li><a href="{{ item[1].url | prepend: site.baseurl }}" class="button {{ page.lang }}"
               >{{ item[1].name }}</a></li>
         {% endfor %}
         </ul>
@@ -67,9 +67,9 @@ layout: compress
         <div class="downloads">
           <span>{{ site.downloads[page.lang] }}:</span>
           <ul>
-            <li><a href="{{ site.code_download[page.lang].url }}" 
+            <li><a href="{{ site.code_download[page.lang].url | prepend: site.baseurl}}" 
                 class="button">{{ site.code_download[page.lang].name }}</a></li>
-            <li><a href="{{ site.solutions_download[page.lang].url }}" 
+            <li><a href="{{ site.solutions_download[page.lang].url | prepend: site.baseurl}}" 
                 class="button">{{ site.solutions_download[page.lang].name }}</a></li>
           </ul>
         </div>
@@ -87,11 +87,11 @@ layout: compress
         {{ site.page_languages[page.lang] }}: 
         {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
           {% for post in posts %}
-          <a href="{{ post.url }}">{{ site.language[post.lang] }}</a>
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ site.language[post.lang] }}</a>
           {% endfor %}
         {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
           {% for page in pages %}
-          <a href="{{ page.url }}">{{ site.language[page.lang] }}</a>
+          <a href="{{ page.url | prepend: site.baseurl }}">{{ site.language[page.lang] }}</a>
           {% endfor %}
         </small></p>
         <p><small>
