@@ -12,14 +12,14 @@ layout: compress
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}
     {{ page.description | default: site.description[page.lang] }}{% endif %}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' 
-    | prepend: site.baseurl | prepend: site.url }}">
+    | relative_url  }}">
     {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
     {% for post in posts %}
     <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />
     {% endfor %}
     {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
     {% for page in pages %}
-    <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url }}" />
+    <link rel="alternate" hreflang="{{ page.lang | relative_url }}" href="{{ page.url | relative_url }}" />
     {% endfor %}
     <link rel="alternate" type="application/rss+xml" 
     title="{{ site.title[page.lang] }}" href="{{ site.feed[page.lang] 
